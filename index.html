@@ -250,6 +250,322 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/git/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/boke.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/05/git/" itemprop="url">git</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-05T17:14:05+08:00">
+                2019-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="git基本命令1"><a href="#git基本命令1" class="headerlink" title="git基本命令1"></a>git基本命令1</h1><ul>
+<li>打开git bash或cmd终端。cd到项目文件夹跟目录下。cd /pycharm/testgit</li>
+<li>git init   初始化本地仓库git，会看到项目文件夹下生成.git隐藏文件夹，这个文件夹会记录以后每次的更改和提交。<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3>git commit -m “第一次提交”    提交</li>
+</ul>
+<p>git Branch  新建分支</p>
+<p>git config –global user.email “<a href="mailto:320571632@qq.com" target="_blank" rel="noopener">320571632@qq.com</a>“<br>git config –global user.name “liuhuan”</p>
+<ul>
+<li>git add 文件名 。 跟踪单个文件git add 1.py</li>
+<li>git add . 跟踪当前文件夹下所有文件</li>
+<li>git merge 副分支。 合并副分支内容到当前分支。</li>
+</ul>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>(<em>newfeature)git add .       git commit -m “”<br>(</em>newfeature)git checkout master<br>(*master)git merge newfeatrue     这样就会把新分支的修改合并到主分支下。</p>
+<h2 id="撤回"><a href="#撤回" class="headerlink" title="撤回"></a>撤回</h2><p>撤销add 文件<br>撤销commit 记录</p>
+<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><p>-git log      查看提交记录。记忆一下想要还原的id值。<br>-git reset –hard 提交记录的id        还原到那一次提交时的状态。</p>
+<h1 id="git基本命令2"><a href="#git基本命令2" class="headerlink" title="git基本命令2"></a>git基本命令2</h1><p>##引题<br>代码在本地提交，可以实现版本回退和前进。但是如果本地磁盘损坏，代码丢失，<br>所以我们要把代码往另一台电脑（远程服务器）存一份。好像网盘。实现代码在不同客户端<br>（电脑，笔记本，手机）拷贝下载代码，提交代码到远程服务</p>
+<p>##ssh 非对称加密<br>ssh:主要用途 远程连接另一台计算机<br>对称加密： 明文’abc’,定义加密规则 a–z分别对应1-26，密文’1%2%3’<br>非对称加密<br>A端和B端通讯。A端通过数学方式(RSA加密 生产容易反向破解难)生成一对密钥。A把公钥告诉B 。B想给A发送消息，先把小修用A的公钥加密，<br>传统给A.如果中间被黑客截取 由于黑客没有A的私钥无法解密，最终A收到消息用自己的私钥解密看到的消息</p>
+<p>##远程仓库平台<br>-github 最为流行，主要线上、<br>-gitlab 较为流行，UI漂亮但消耗更多的资源，不少公司局域网内搭建<br>-gitee 阿里云code，国内的代码仓库，基于gitlab或相似技术</p>
+<p>##github使用<br>1.注册登录。网站没有被墙可以直接登录<br>可能出现的问题：注册时报验证错误检查防火墙或代理，用手机注册或科学上网<br>2.左上角搜索仓库。进入一个工程项目中<br>watch 关注，当代码改变，会有邮件提醒<br>star 收藏 收藏到我的文件夹<br>folk 拷贝别人的代码仓库到自己的仓库。方便自己下载这份代码或为这个项目做贡献</p>
+<h3 id="除项目外-约定俗成的文件"><a href="#除项目外-约定俗成的文件" class="headerlink" title="除项目外 约定俗成的文件"></a>除项目外 约定俗成的文件</h3><p>-READ.md 写项目介绍，安装运行步骤。这个文件会在github项目渲染出来。说明书<br>-LICENSE 版权声明 gpl，规定代码是否免费，是否可以修改商用。具体百度<br>-.ignore 忽略一些不想跟踪不想add文件</p>
+<p>###准备：配置密钥对<br>初次使用代码本控制平台。由于代码重要，平台为了防止账户名密码泄露后代码被黑客窃取。你的客户端自己的电脑<br>生成一对密钥，然后将公钥交给平台。这样从平台克隆代码时，不是自己的电脑无法克隆<br>–ssh-keygen命令 一路回车，生成密钥对<br>在用户/用户名/.ssh文件下看到生成的 id-rsa.pub公钥。私钥自己谨慎保存，公钥给你想要沟通的远程平台</p>
+<p>##命令<br>github上随意找一个项目，复制下载里的 ssh链接<br>-git clone ssh链接（形如<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>/sss/sss.git） 远程仓库复制到自己的本地电脑上<br>刚开始对方会询问是否接受存储公钥，输入yes,开始clone</p>
+<p>github新建一个项目，克隆到本地。 本地进行修改，提交<br>-git push origin 把本地提交推送到远程服务器仓库。这样当更换电脑或是本地仓库被破坏时，可以快速从远程仓库<br>克隆回复。origin指远程服务器</p>
+<p>-git pull从远程仓库更新新内容到本地。与git clone相比，clone相比，clone是本地什么都没有</p>
+<h3 id="克隆下来后的上传"><a href="#克隆下来后的上传" class="headerlink" title="克隆下来后的上传"></a>克隆下来后的上传</h3><ol>
+<li>find . -name “.git” | xargs rm -Rf   解除远程链接</li>
+<li>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:liuhuanhhhh/polls.git   绑定github上的仓库链接</li>
+<li>git push –set-upstream origin master  上传到远程仓库</li>
+</ol>
+<p>从远程复制仓库。<br>pull是本地已经有的仓库，另外开发者提交过远程仓库，远程仓库代码比自己本地仓库代码新，所以本地提交前要先从远程更新提交。</p>
+<p>打tag  百度自学，v8.0.14</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/数据库基础1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/boke.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/05/数据库基础1/" itemprop="url">数据库基础1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-05T17:12:13+08:00">
+                2019-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数据库介绍"><a href="#数据库介绍" class="headerlink" title="数据库介绍"></a>数据库介绍</h1><h2 id="引题"><a href="#引题" class="headerlink" title="引题"></a>引题</h2><p>为什么使用数据库：<br>之前的学习中我们已经可以存储数据，变量、读写本地文件（txt、csv)。</p>
+<ol>
+<li>持久化。内存中的变量当程序重启和电脑断电时丢失数据，而硬盘可以长时间、持久地存储数据。数据存储到硬盘上的过程叫持久化。</li>
+<li>数据库更加专业强大。远比纯文本文档、excel表格强大，增删改查和统计函数。         </li>
+</ol>
+<h2 id="数据库基本概念"><a href="#数据库基本概念" class="headerlink" title="数据库基本概念"></a>数据库基本概念</h2><p>观察表格、excel表格 ，打开了 学生列表.xls excel表格文档。类比引入数据库概念。</p>
+<ol>
+<li>库 schema：好像整个表格文档。 好像一个物流公司共占地100亩，盖了50个仓库，A01仓库负责存储河南客户货物，A02仓库负责存储广州xx项目物料。每一个仓库对应一个项目。   </li>
+<li>表 table：对应excel表格里sheet1 sheet2。由行内容和列组成。表描述一个类，每一行描述一个对象。 </li>
+<li>字段 field：对应表格头部的 序号、班级、姓名。好像类的属性。字段里存储的值的类型需要事先定义。</li>
+<li>值 value：表格每一行具体存储的信息。</li>
+<li>主键 primary key：类似表格中 序号 这一列。数据库中这一列会自增并不会重复。</li>
+<li>外键 foreign key: 表1学员信息里一个班级字段引用自另一个表班级信息表的id列。优点易于维护，保持数据一致性。</li>
+<li>范式：描述 智游学校时，可以把全部信息字段定义到一张表上，也可以分为学员信息表、班级信息表、课程信息表。划分维度、信息耦合度可高可低，具体结合业务逻辑分析。</li>
+</ol>
+<h2 id="常见数据库介绍"><a href="#常见数据库介绍" class="headerlink" title="常见数据库介绍"></a>常见数据库介绍</h2><p>关系型数据库：</p>
+<ol>
+<li>sqlite：轻量级数据库。功能基础简单，在数据较少情况下性能并不比重型数据库低。优点，python解释器内置驱动，无需安装直接使用，适合初学数据库。手机应用使用的就是它。</li>
+<li>mysql：最流行的数据库。中型。开源、php流行推动了mysql的流行。</li>
+<li>PostgreSQL: 大象数据库，号称最先进的数据库。从大学兴起的开源数据库、架构优秀、功能前卫，数据量很大的时候，性能衰减不明显。消耗相同硬件资源的情况下性能和稳定性优于mysql数据库。django odoo等python框架官方推荐使用此数据库。但是目前市场占有率还不高。</li>
+<li>oracle：地位很高的商用数据库。昂贵、稳定、功能强大，常与java配合使用。</li>
+<li>DB2 sybase MSSQL等，其它的商用数据库。</li>
+<li>access：微软office套件中包含，轻量，由于数据库门槛，使用者不多。</li>
+</ol>
+<p>no-sql（not only sql）型数据库：</p>
+<ol start="7">
+<li>mongodb   存储单位是文档，json（类似后端dict)结构整个存进去。数据常放在内存中以获得查询性能，定期把数据持久化到硬盘上。</li>
+<li>redis    键值对  “name”=”小明” 。</li>
+</ol>
+<h2 id="数据库字段类型"><a href="#数据库字段类型" class="headerlink" title="数据库字段类型"></a>数据库字段类型</h2><p>数据库创建表示要事先告诉计算机硬盘，每张表的每个字段存什么类型、将要存储的内容大还是小。长度过小，内容值存不进去，长度太大，浪费硬盘空间。我们需要选择合适的类型和长度。<br>各数据库字段类型关键字基本一致。mysql oracle postgresql常用字段类型如下：</p>
+<ol>
+<li>整数<br>整数：常用INT   INTEGER   占4个字节，2**32，可以表示常用范围整数。<br>（不常用）TINYINT（1字节）  SMALLINT（2字节） MEDIUMINT（3字节）<br>BIGINT（8字节） 适用身份证号、VIP号码比较长的编号。</li>
+<li>浮点数<br>常用 FLOAT(4字节) 单精度小数 。 即使是单精度，范围也不小。<br>DOUBLE(8字节) 双精度小数。<br>场景 金钱计算，轨道计算。</li>
+<li>字符串<br>CHAR  char(10) 可以存储长度（字节长度）不超过10的字符串。例如”hello”。但由于长度按照字节判断，存unicode编码的中文只能存3个。<br>常用  VARCHAR 0-65535字节，variable char 可变字符串。VARCHAR(5)  可以存储5个中文或5个英文字母。场景 用户名、家庭住址。<br>TEXT TINYTEXT  medium  longtext ， 场景 大文本存储，书籍文章、用户反馈。<br>BLOB medium  longblob ，二进制文件， 场景 图片、视频。但一般不在数据库中存储图片和视频，因为会增加数据库的计算压力和带宽传输压力和备份还原的难度和用户信息静态资源耦合到一起，解决方案是 图片视频存到普通文件目录下，数据库中存储文件路径。</li>
+<li>日期<br>DATE    日期， 形如”2018-11-08”<br>常用 DATETIME  日期时间， “2018-11-08 16:52:30”  “2018-11-08 16:52:30.123” “2018-11-08 16:52:30 GTM+8”<br>常用 TIMESTAMP 时间戳, 1541667270  1541667270.7252207   1541667270725</li>
+</ol>
+<p>sqlite的字段比较简化：<br>INTEGER     整数<br>REAL        浮点数<br>TEXT        字符串<br>NULL        什么都不存</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>structured query language 结构化查询语言。专门对数据库进行查找、增加、修改、删除、统计的操作语言。<br>CURD 增删查改 create update retrieve delete。<br>书写风格，关键字大小写都行，建议大写。表名大小写都行，但是在一些数据库中不区分大小写，建议小写。</p>
+<p>（重要）基本语法。</p>
+<ol>
+<li>查找<br>SELECT 字段1,字段2,字段3,…  FROM 表名;      python中返回值形如[(1, 502班, 小明, 男), (), ()]。<br>字段比较多时简写为  SELECT <em> FROM 表名;       由于数据库执行时会把</em>转换为字段再执行，性能极微小下降。<br>SELECT * FROM 表名 WHERE 字段1 = 过滤值,字典2=过滤值 ;       where限定条件查找。</li>
+<li>添加<br>INSERT 字段1,字段2,… INTO 表名 VALUES (1, “小明”, “男”);<br>简写 INSERT INTO 表名 VALUES (1, “小明”, “男”);</li>
+<li>修改<br>UPDATE 表名 SET 字段1=新值,字段2=新值 WHERE 字段1 = 过滤值;<br>注意没有where条件限定行的话将会更新整张表。</li>
+<li>删除<br>DELETE FROM 表名;                 注意会删除整张表。<br>DELETE FROM 表名 WHERE 字段1 = 过滤值;       限定条件删除某些行。</li>
+<li>创建表<br>CREATE TABLE 表名 {<br> 字段类型 字段名 其它关键字（主键 备注），<br> INT   id   PRIMARY KEY,<br> VARCHAR(20) username ，<br>}</li>
+</ol>
+<p>进阶语法：<br>分组group by、统计、聚合having max avg，  爬虫中后期再讲。 </p>
+<p>存储过程：数据库脚本，类似后端语言，有变量、控制语句、函数等。适合书写复杂SQL语句，效率较高。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/python数据类型/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -589,7 +905,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

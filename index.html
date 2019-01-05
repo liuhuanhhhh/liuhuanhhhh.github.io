@@ -250,6 +250,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/django简介/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/boke.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/05/django简介/" itemprop="url">django简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-05T17:56:46+08:00">
+                2019-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="django"><a href="#django" class="headerlink" title="django"></a>django</h1><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>版本：1.x 和 2.x， 2.x不支持python2版本，只支持py3.5及以上版本。1.x路由正则风格 2.x路由风格简单类似flask。</p>
+<p>优点：大而全，封装多种功能，开箱即用。目录结构适合中大型程序。缺点，内含的功能有些用不上。</p>
+<h3 id="教程：投票应用"><a href="#教程：投票应用" class="headerlink" title="教程：投票应用"></a>教程：投票应用</h3><ol>
+<li>确认python版本和django版本已安装。python -m django –version</li>
+<li>新建工程项目<br>django-admin startproject mysite</li>
+<li>项目目录结构<br>根目录下manage.py启动服务的入口。跟项目同名的mysite文件夹下是主要项目代码。有的项目中这个文件夹又叫做app、src。settings.py设置，urls.py路由。wsgi.py打包应用部署相关。</li>
+<li>启动项目 python manage.py runserver</li>
+<li>生成应用 python manage.py startapp polls   。project是项目工程，app应用是项目中一个功能模块。polls目录下migrations是sql迁移脚本，admin.py后台插件，apps.py ,models.py定义表结构的类，<br>tests.py单元测试，views.py业务逻辑和HTML渲染。</li>
+</ol>
+<h3 id="数据流程"><a href="#数据流程" class="headerlink" title="数据流程"></a>数据流程</h3><p>浏览器请求url → mysite/urls.py → polls/urls.py → polls/views.py → 返回响应浏览器展示</p>
+<h3 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h3><ol>
+<li>安装django时报目录权限错误。 解决使用管理员powershell pip安装。</li>
+<li>代码修改后未生效，服务器无log。原因进程未正常退出。解决 改端口或任务管理器中结束所有python.exe</li>
+<li>getaddress函数报错。原因，计算机别名为中文。</li>
+</ol>
+<h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p>场景：你的网站世界用户都可访问。网站上线圣诞节活动，0点到24点结束，本国人正常，外国人访问发现活动开始和结束时间提前或延后。</p>
+<p>背景知识：<br>TIME_ZONE=’UTC’<br>USE_TZ=True<br>不带时区的时间aware_time, 带时区的时间local_time(本地时间)。<br>GMT、UTC（世界调和时）。中国东8区 UTC+8。<br>python内置的datetime包 now()生成本地时间。<br>如果网站只有国内访问，USE_TZ应该设置为False，时间可以由datetime包生成，存储在数据库的是不带时区的本地时间。</p>
+<p>django解决方案：<br>为了避免上面提到的场景，django的解决方案是。基于三方包pytime_tz，由time_zone() 生成带时区的时间，根据TIME_ZONE设置转换UTC时间存入数据库，html渲染时从取出UTC时间，根据访问者的时区转换成访问者当地的时间。</p>
+<p>最佳实践：</p>
+<ol>
+<li>国内访问， USE_TZ=False  TIME_ZONE=’UTC’   datetime.now() time_zone()都行</li>
+<li>多国访问，USE_TZUSE_TZ=True  TIME_ZONE=’Asia/Shanghi’   time_zone()</li>
+</ol>
+<p>可能出现的错误：<br>前台页面时间比实际早8小时，原因USE_TZ=False  TIME_ZONE=’Asia/Shanghi’<br>工作中直接操作数据库时记得考虑数据库中的时间是早8小时的。</p>
+<h3 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h3><p>i18n意为国际化。网站上的菜单不同国家人访问展示不同的语言。原理有个翻译的配置文件。<br>I18N=TRUE  保持默认开启。<br>LANGUAGE_CODE</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/爬虫简介/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1053,7 +1197,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1066,7 +1210,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

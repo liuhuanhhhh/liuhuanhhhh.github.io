@@ -321,33 +321,18 @@
       
         
           
-            <h1 id="django"><a href="#django" class="headerlink" title="django"></a>django</h1><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>版本：1.x 和 2.x， 2.x不支持python2版本，只支持py3.5及以上版本。1.x路由正则风格 2.x路由风格简单类似flask。</p>
-<p>优点：大而全，封装多种功能，开箱即用。目录结构适合中大型程序。缺点，内含的功能有些用不上。</p>
-<h3 id="教程：投票应用"><a href="#教程：投票应用" class="headerlink" title="教程：投票应用"></a>教程：投票应用</h3><ol>
-<li>确认python版本和django版本已安装。python -m django –version</li>
-<li>新建工程项目<br>django-admin startproject mysite</li>
-<li>项目目录结构<br>根目录下manage.py启动服务的入口。跟项目同名的mysite文件夹下是主要项目代码。有的项目中这个文件夹又叫做app、src。settings.py设置，urls.py路由。wsgi.py打包应用部署相关。</li>
-<li>启动项目 python manage.py runserver</li>
-<li>生成应用 python manage.py startapp polls   。project是项目工程，app应用是项目中一个功能模块。polls目录下migrations是sql迁移脚本，admin.py后台插件，apps.py ,models.py定义表结构的类，<br>tests.py单元测试，views.py业务逻辑和HTML渲染。</li>
-</ol>
-<h3 id="数据流程"><a href="#数据流程" class="headerlink" title="数据流程"></a>数据流程</h3><p>浏览器请求url → mysite/urls.py → polls/urls.py → polls/views.py → 返回响应浏览器展示</p>
-<h3 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h3><ol>
-<li>安装django时报目录权限错误。 解决使用管理员powershell pip安装。</li>
-<li>代码修改后未生效，服务器无log。原因进程未正常退出。解决 改端口或任务管理器中结束所有python.exe</li>
-<li>getaddress函数报错。原因，计算机别名为中文。</li>
-</ol>
-<h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p>场景：你的网站世界用户都可访问。网站上线圣诞节活动，0点到24点结束，本国人正常，外国人访问发现活动开始和结束时间提前或延后。</p>
-<p>背景知识：<br>TIME_ZONE=’UTC’<br>USE_TZ=True<br>不带时区的时间aware_time, 带时区的时间local_time(本地时间)。<br>GMT、UTC（世界调和时）。中国东8区 UTC+8。<br>python内置的datetime包 now()生成本地时间。<br>如果网站只有国内访问，USE_TZ应该设置为False，时间可以由datetime包生成，存储在数据库的是不带时区的本地时间。</p>
-<p>django解决方案：<br>为了避免上面提到的场景，django的解决方案是。基于三方包pytime_tz，由time_zone() 生成带时区的时间，根据TIME_ZONE设置转换UTC时间存入数据库，html渲染时从取出UTC时间，根据访问者的时区转换成访问者当地的时间。</p>
-<p>最佳实践：</p>
-<ol>
-<li>国内访问， USE_TZ=False  TIME_ZONE=’UTC’   datetime.now() time_zone()都行</li>
-<li>多国访问，USE_TZUSE_TZ=True  TIME_ZONE=’Asia/Shanghi’   time_zone()</li>
-</ol>
-<p>可能出现的错误：<br>前台页面时间比实际早8小时，原因USE_TZ=False  TIME_ZONE=’Asia/Shanghi’<br>工作中直接操作数据库时记得考虑数据库中的时间是早8小时的。</p>
-<h3 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h3><p>i18n意为国际化。网站上的菜单不同国家人访问展示不同的语言。原理有个翻译的配置文件。<br>I18N=TRUE  保持默认开启。<br>LANGUAGE_CODE</p>
-
-          
+          django介绍版本：1.x 和 2.x， 2.x不支持python2版本，只支持py3.5及以上版本。1.x路由正则风格 2.x路由风格简单类似flask。
+优点：大而全，封装多种功能，开箱即用。目录结构适合中大型程序。缺点，内含的功能有些用不上。
+教程：投票应用
+确认python版本和djang
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/05/django简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -465,37 +450,15 @@
       
         
           
-            <h2 id="网络爬虫"><a href="#网络爬虫" class="headerlink" title="网络爬虫"></a>网络爬虫</h2><p>网络爬虫(web crawler), 以前经常称为网络蜘蛛(spider), 是按照一定的规则自动浏览万维网并获取信息的机器人程序(或叫脚本), 曾经被广泛的应用于互联网搜索引擎. 使用过互联网和浏览器的人都知道, 网页中除了提供用户阅读的文字信息之外, 还包含一些超链接. 网络爬虫系统正是通过网页中的超链接信息不断获得网络上的其他页面. 正因为如此, 网络数据采集的过程就像一个爬虫或者蜘蛛在网络上漫游, 所有才被形象的称之为网络爬虫或者网络蜘蛛.</p>
-<h2 id="爬虫的应用领域"><a href="#爬虫的应用领域" class="headerlink" title="爬虫的应用领域"></a>爬虫的应用领域</h2><p>在理想的状态下, 所有的ICP(internet Content Provider) 都应该为自己的网络提供API接口来共享它们允许其他程序获取的数据, 在这种情况下爬虫就不是必需品, 国内比较有名的电商平台(如淘宝, 京东等), 社交平台(如QQ/微博/微信等)这些网站都提供了自己的Open Api, 但是这类Open Api通常会对可以抓取的数据频率进行限制. 对于大多数的公司而言, 计时的获取行业相关数据就是企业生存的重要环节之一, 然而大部分企业在行业数据方面的匮乏是其与生俱来的短板, 合理的利用爬虫来获取数据并从中提取出有价值的信息是至关重要的. 当然爬虫还有很多重要的应用领域, 以下列举了其中一部分.</p>
-<ol>
-<li>搜索引擎</li>
-<li>新闻聚合</li>
-<li>社交应用</li>
-<li>舆情监控</li>
-<li>行业数据</li>
-</ol>
-<h2 id="合法性"><a href="#合法性" class="headerlink" title="合法性"></a>合法性</h2><p>1.网络爬虫领域目前还属于拓荒阶段, 虽然互联网世界已经通过自己的游戏规则建立起一定的道德规范(Robots协议, 全称是’网络爬虫排除标准’), 但在法律部分还在建立和完善中, 也就是说, 现在这个领域暂时还是灰色地带.</p>
-<ol start="2">
-<li>‘法不禁止即为许可’, 如果爬虫就像浏览器一样获取的是前端显示的数据(网页上的公开信息), 而不是网站后台的私密敏感信息, 就不太担心法律法规的约束, 因为目前大数据产业链的发展速度远远超过了法律的完善程度.</li>
-<li>在爬取网站的时候, 需要限制自己的爬虫遵守Robots协议, 同时控制网络爬虫程序的抓取数据的速度, 在使用数据的时候, 必须要尊重网站的知识产权(从Web2.0时代开始, 虽然Web上的数据很多都是由用户提供的, 但是网站平台是投入了运营成本的, 当用户在注册和发布呢日用时, 平台通常就已经获取了对数据的所有权, 使用权和分发权). 如果违反了这些规定, 在打官司的时候败诉几率就非常高.</li>
-</ol>
-<h2 id="Robots-txt文件"><a href="#Robots-txt文件" class="headerlink" title="Robots.txt文件"></a>Robots.txt文件</h2><p>网站告诉爬虫哪些能访问哪些不能访问<br><a href="https://www.taobao.com/robots.txt" target="_blank" rel="noopener">https://www.taobao.com/robots.txt</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">User-Agent:  Yahoo!  Slurp</span><br><span class="line">Allow:  /product</span><br><span class="line">Allow:  /spu</span><br><span class="line">Allow:  /dianpu</span><br><span class="line">Allow:  /oversea</span><br><span class="line">Allow:  /list</span><br><span class="line">Allow:  /ershou</span><br><span class="line">Disallow:  /</span><br><span class="line"></span><br><span class="line">User-Agent:  *</span><br><span class="line">Disallow:  /</span><br></pre></td></tr></table></figure></p>
-<p>注意上面robots.txt第一段的最后一行, 通过设置’Disallow:/’禁止百度爬虫访问除了’Allow’规定页面外的其他所有页面. 因此当你在百度搜索’淘宝’的时候, 搜索结果下方会出现: ‘由于该网站的rebots.txt文件存在限制指令(限制搜索引擎抓取). 系统无法提供该页面的内容描述.’, 百度作为一个搜索引擎, 至少在表面上遵守了淘宝网的robots.txt协议, 所以用户不能从百度上搜索到淘宝内部的产品信息. </p>
-<h2 id="whois信息"><a href="#whois信息" class="headerlink" title="whois信息"></a>whois信息</h2><ol>
-<li>站长工具</li>
-<li>whois包</li>
-</ol>
-<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><ol>
-<li>chrome devtool使用</li>
-<li>postman</li>
-<li>抓包工具</li>
-</ol>
-<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><ol>
-<li><a href="https://blog.csdn.net/qq_41637554/article/details/80548242?utm_source=copy" target="_blank" rel="noopener">刘东灵 的CSDN 博客</a></li>
-<li>《用python写网络爬虫》</li>
-</ol>
-
-          
+          网络爬虫网络爬虫(web crawler), 以前经常称为网络蜘蛛(spider), 是按照一定的规则自动浏览万维网并获取信息的机器人程序(或叫脚本), 曾经被广泛的应用于互联网搜索引擎. 使用过互联网和浏览器的人都知道, 网页中除了提供用户阅读的文字信息之外, 还包含一些超链接. 网络爬虫系统正是
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/05/爬虫简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -613,38 +576,17 @@
       
         
           
-            <h1 id="git基本命令1"><a href="#git基本命令1" class="headerlink" title="git基本命令1"></a>git基本命令1</h1><ul>
-<li>打开git bash或cmd终端。cd到项目文件夹跟目录下。cd /pycharm/testgit</li>
-<li>git init   初始化本地仓库git，会看到项目文件夹下生成.git隐藏文件夹，这个文件夹会记录以后每次的更改和提交。<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3>git commit -m “第一次提交”    提交</li>
-</ul>
-<p>git Branch  新建分支</p>
-<p>git config –global user.email “<a href="mailto:320571632@qq.com" target="_blank" rel="noopener">320571632@qq.com</a>“<br>git config –global user.name “liuhuan”</p>
-<ul>
-<li>git add 文件名 。 跟踪单个文件git add 1.py</li>
-<li>git add . 跟踪当前文件夹下所有文件</li>
-<li>git merge 副分支。 合并副分支内容到当前分支。</li>
-</ul>
-<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>(<em>newfeature)git add .       git commit -m “”<br>(</em>newfeature)git checkout master<br>(*master)git merge newfeatrue     这样就会把新分支的修改合并到主分支下。</p>
-<h2 id="撤回"><a href="#撤回" class="headerlink" title="撤回"></a>撤回</h2><p>撤销add 文件<br>撤销commit 记录</p>
-<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><p>-git log      查看提交记录。记忆一下想要还原的id值。<br>-git reset –hard 提交记录的id        还原到那一次提交时的状态。</p>
-<h1 id="git基本命令2"><a href="#git基本命令2" class="headerlink" title="git基本命令2"></a>git基本命令2</h1><p>##引题<br>代码在本地提交，可以实现版本回退和前进。但是如果本地磁盘损坏，代码丢失，<br>所以我们要把代码往另一台电脑（远程服务器）存一份。好像网盘。实现代码在不同客户端<br>（电脑，笔记本，手机）拷贝下载代码，提交代码到远程服务</p>
-<p>##ssh 非对称加密<br>ssh:主要用途 远程连接另一台计算机<br>对称加密： 明文’abc’,定义加密规则 a–z分别对应1-26，密文’1%2%3’<br>非对称加密<br>A端和B端通讯。A端通过数学方式(RSA加密 生产容易反向破解难)生成一对密钥。A把公钥告诉B 。B想给A发送消息，先把小修用A的公钥加密，<br>传统给A.如果中间被黑客截取 由于黑客没有A的私钥无法解密，最终A收到消息用自己的私钥解密看到的消息</p>
-<p>##远程仓库平台<br>-github 最为流行，主要线上、<br>-gitlab 较为流行，UI漂亮但消耗更多的资源，不少公司局域网内搭建<br>-gitee 阿里云code，国内的代码仓库，基于gitlab或相似技术</p>
-<p>##github使用<br>1.注册登录。网站没有被墙可以直接登录<br>可能出现的问题：注册时报验证错误检查防火墙或代理，用手机注册或科学上网<br>2.左上角搜索仓库。进入一个工程项目中<br>watch 关注，当代码改变，会有邮件提醒<br>star 收藏 收藏到我的文件夹<br>folk 拷贝别人的代码仓库到自己的仓库。方便自己下载这份代码或为这个项目做贡献</p>
-<h3 id="除项目外-约定俗成的文件"><a href="#除项目外-约定俗成的文件" class="headerlink" title="除项目外 约定俗成的文件"></a>除项目外 约定俗成的文件</h3><p>-READ.md 写项目介绍，安装运行步骤。这个文件会在github项目渲染出来。说明书<br>-LICENSE 版权声明 gpl，规定代码是否免费，是否可以修改商用。具体百度<br>-.ignore 忽略一些不想跟踪不想add文件</p>
-<p>###准备：配置密钥对<br>初次使用代码本控制平台。由于代码重要，平台为了防止账户名密码泄露后代码被黑客窃取。你的客户端自己的电脑<br>生成一对密钥，然后将公钥交给平台。这样从平台克隆代码时，不是自己的电脑无法克隆<br>–ssh-keygen命令 一路回车，生成密钥对<br>在用户/用户名/.ssh文件下看到生成的 id-rsa.pub公钥。私钥自己谨慎保存，公钥给你想要沟通的远程平台</p>
-<p>##命令<br>github上随意找一个项目，复制下载里的 ssh链接<br>-git clone ssh链接（形如<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>/sss/sss.git） 远程仓库复制到自己的本地电脑上<br>刚开始对方会询问是否接受存储公钥，输入yes,开始clone</p>
-<p>github新建一个项目，克隆到本地。 本地进行修改，提交<br>-git push origin 把本地提交推送到远程服务器仓库。这样当更换电脑或是本地仓库被破坏时，可以快速从远程仓库<br>克隆回复。origin指远程服务器</p>
-<p>-git pull从远程仓库更新新内容到本地。与git clone相比，clone相比，clone是本地什么都没有</p>
-<h3 id="克隆下来后的上传"><a href="#克隆下来后的上传" class="headerlink" title="克隆下来后的上传"></a>克隆下来后的上传</h3><ol>
-<li>find . -name “.git” | xargs rm -Rf   解除远程链接</li>
-<li>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:liuhuanhhhh/polls.git   绑定github上的仓库链接</li>
-<li>git push –set-upstream origin master  上传到远程仓库</li>
-</ol>
-<p>从远程复制仓库。<br>pull是本地已经有的仓库，另外开发者提交过远程仓库，远程仓库代码比自己本地仓库代码新，所以本地提交前要先从远程更新提交。</p>
-<p>打tag  百度自学，v8.0.14</p>
-
-          
+          git基本命令1
+打开git bash或cmd终端。cd到项目文件夹跟目录下。cd /pycharm/testgit
+git init   初始化本地仓库git，会看到项目文件夹下生成.git隐藏文件夹，这个文件夹会记录以后每次的更改和提交。常用命令git commit -m “第一次提交”    
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/05/git/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -762,56 +704,18 @@
       
         
           
-            <h1 id="数据库介绍"><a href="#数据库介绍" class="headerlink" title="数据库介绍"></a>数据库介绍</h1><h2 id="引题"><a href="#引题" class="headerlink" title="引题"></a>引题</h2><p>为什么使用数据库：<br>之前的学习中我们已经可以存储数据，变量、读写本地文件（txt、csv)。</p>
-<ol>
-<li>持久化。内存中的变量当程序重启和电脑断电时丢失数据，而硬盘可以长时间、持久地存储数据。数据存储到硬盘上的过程叫持久化。</li>
-<li>数据库更加专业强大。远比纯文本文档、excel表格强大，增删改查和统计函数。         </li>
-</ol>
-<h2 id="数据库基本概念"><a href="#数据库基本概念" class="headerlink" title="数据库基本概念"></a>数据库基本概念</h2><p>观察表格、excel表格 ，打开了 学生列表.xls excel表格文档。类比引入数据库概念。</p>
-<ol>
-<li>库 schema：好像整个表格文档。 好像一个物流公司共占地100亩，盖了50个仓库，A01仓库负责存储河南客户货物，A02仓库负责存储广州xx项目物料。每一个仓库对应一个项目。   </li>
-<li>表 table：对应excel表格里sheet1 sheet2。由行内容和列组成。表描述一个类，每一行描述一个对象。 </li>
-<li>字段 field：对应表格头部的 序号、班级、姓名。好像类的属性。字段里存储的值的类型需要事先定义。</li>
-<li>值 value：表格每一行具体存储的信息。</li>
-<li>主键 primary key：类似表格中 序号 这一列。数据库中这一列会自增并不会重复。</li>
-<li>外键 foreign key: 表1学员信息里一个班级字段引用自另一个表班级信息表的id列。优点易于维护，保持数据一致性。</li>
-<li>范式：描述 智游学校时，可以把全部信息字段定义到一张表上，也可以分为学员信息表、班级信息表、课程信息表。划分维度、信息耦合度可高可低，具体结合业务逻辑分析。</li>
-</ol>
-<h2 id="常见数据库介绍"><a href="#常见数据库介绍" class="headerlink" title="常见数据库介绍"></a>常见数据库介绍</h2><p>关系型数据库：</p>
-<ol>
-<li>sqlite：轻量级数据库。功能基础简单，在数据较少情况下性能并不比重型数据库低。优点，python解释器内置驱动，无需安装直接使用，适合初学数据库。手机应用使用的就是它。</li>
-<li>mysql：最流行的数据库。中型。开源、php流行推动了mysql的流行。</li>
-<li>PostgreSQL: 大象数据库，号称最先进的数据库。从大学兴起的开源数据库、架构优秀、功能前卫，数据量很大的时候，性能衰减不明显。消耗相同硬件资源的情况下性能和稳定性优于mysql数据库。django odoo等python框架官方推荐使用此数据库。但是目前市场占有率还不高。</li>
-<li>oracle：地位很高的商用数据库。昂贵、稳定、功能强大，常与java配合使用。</li>
-<li>DB2 sybase MSSQL等，其它的商用数据库。</li>
-<li>access：微软office套件中包含，轻量，由于数据库门槛，使用者不多。</li>
-</ol>
-<p>no-sql（not only sql）型数据库：</p>
-<ol start="7">
-<li>mongodb   存储单位是文档，json（类似后端dict)结构整个存进去。数据常放在内存中以获得查询性能，定期把数据持久化到硬盘上。</li>
-<li>redis    键值对  “name”=”小明” 。</li>
-</ol>
-<h2 id="数据库字段类型"><a href="#数据库字段类型" class="headerlink" title="数据库字段类型"></a>数据库字段类型</h2><p>数据库创建表示要事先告诉计算机硬盘，每张表的每个字段存什么类型、将要存储的内容大还是小。长度过小，内容值存不进去，长度太大，浪费硬盘空间。我们需要选择合适的类型和长度。<br>各数据库字段类型关键字基本一致。mysql oracle postgresql常用字段类型如下：</p>
-<ol>
-<li>整数<br>整数：常用INT   INTEGER   占4个字节，2**32，可以表示常用范围整数。<br>（不常用）TINYINT（1字节）  SMALLINT（2字节） MEDIUMINT（3字节）<br>BIGINT（8字节） 适用身份证号、VIP号码比较长的编号。</li>
-<li>浮点数<br>常用 FLOAT(4字节) 单精度小数 。 即使是单精度，范围也不小。<br>DOUBLE(8字节) 双精度小数。<br>场景 金钱计算，轨道计算。</li>
-<li>字符串<br>CHAR  char(10) 可以存储长度（字节长度）不超过10的字符串。例如”hello”。但由于长度按照字节判断，存unicode编码的中文只能存3个。<br>常用  VARCHAR 0-65535字节，variable char 可变字符串。VARCHAR(5)  可以存储5个中文或5个英文字母。场景 用户名、家庭住址。<br>TEXT TINYTEXT  medium  longtext ， 场景 大文本存储，书籍文章、用户反馈。<br>BLOB medium  longblob ，二进制文件， 场景 图片、视频。但一般不在数据库中存储图片和视频，因为会增加数据库的计算压力和带宽传输压力和备份还原的难度和用户信息静态资源耦合到一起，解决方案是 图片视频存到普通文件目录下，数据库中存储文件路径。</li>
-<li>日期<br>DATE    日期， 形如”2018-11-08”<br>常用 DATETIME  日期时间， “2018-11-08 16:52:30”  “2018-11-08 16:52:30.123” “2018-11-08 16:52:30 GTM+8”<br>常用 TIMESTAMP 时间戳, 1541667270  1541667270.7252207   1541667270725</li>
-</ol>
-<p>sqlite的字段比较简化：<br>INTEGER     整数<br>REAL        浮点数<br>TEXT        字符串<br>NULL        什么都不存</p>
-<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>structured query language 结构化查询语言。专门对数据库进行查找、增加、修改、删除、统计的操作语言。<br>CURD 增删查改 create update retrieve delete。<br>书写风格，关键字大小写都行，建议大写。表名大小写都行，但是在一些数据库中不区分大小写，建议小写。</p>
-<p>（重要）基本语法。</p>
-<ol>
-<li>查找<br>SELECT 字段1,字段2,字段3,…  FROM 表名;      python中返回值形如[(1, 502班, 小明, 男), (), ()]。<br>字段比较多时简写为  SELECT <em> FROM 表名;       由于数据库执行时会把</em>转换为字段再执行，性能极微小下降。<br>SELECT * FROM 表名 WHERE 字段1 = 过滤值,字典2=过滤值 ;       where限定条件查找。</li>
-<li>添加<br>INSERT 字段1,字段2,… INTO 表名 VALUES (1, “小明”, “男”);<br>简写 INSERT INTO 表名 VALUES (1, “小明”, “男”);</li>
-<li>修改<br>UPDATE 表名 SET 字段1=新值,字段2=新值 WHERE 字段1 = 过滤值;<br>注意没有where条件限定行的话将会更新整张表。</li>
-<li>删除<br>DELETE FROM 表名;                 注意会删除整张表。<br>DELETE FROM 表名 WHERE 字段1 = 过滤值;       限定条件删除某些行。</li>
-<li>创建表<br>CREATE TABLE 表名 {<br> 字段类型 字段名 其它关键字（主键 备注），<br> INT   id   PRIMARY KEY,<br> VARCHAR(20) username ，<br>}</li>
-</ol>
-<p>进阶语法：<br>分组group by、统计、聚合having max avg，  爬虫中后期再讲。 </p>
-<p>存储过程：数据库脚本，类似后端语言，有变量、控制语句、函数等。适合书写复杂SQL语句，效率较高。</p>
+          数据库介绍引题为什么使用数据库：之前的学习中我们已经可以存储数据，变量、读写本地文件（txt、csv)。
 
-          
+持久化。内存中的变量当程序重启和电脑断电时丢失数据，而硬盘可以长时间、持久地存储数据。数据存储到硬盘上的过程叫持久化。
+数据库更加专业强大。远比纯文本文档、excel表格强大，增删改查和统计函
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/05/数据库基础1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -929,37 +833,19 @@
       
         
           
-            <h1 id="字符串详解"><a href="#字符串详解" class="headerlink" title="字符串详解"></a>字符串详解</h1><h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><p>因为一些特殊字符是python中的关键字或一些特殊的概念如换行。<br>所以以特殊字符 \ 开头，构造转义字符。<br>常见的转义字符：<br>\n  换行        \t  制表符<br>\’   单引号     \”  双引号<br>\   反斜杠</p>
-<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><p>for i in ‘abc’:<br>    print(i)</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p> a    b    c</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h3 id="下标访问"><a href="#下标访问" class="headerlink" title="下标访问"></a>下标访问</h3><p>‘hello’[4]</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p> ‘o’</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>(了解)’字符串’.count(子字符串)  搜索子串出现次数<br>‘xyaxyaXY’.count(‘xy’)<br>→ 2<br>‘xyaxyaXY’.count(‘xy’, 2)<br>(了解)判断字符串是否以某个字母开头<br>→ 1<br>‘abcd’.startswith(‘a’)<br>→ True<br>‘abcd’.endswith(‘d’)<br>→ True</p>
-<p>字符串.find(子串)  找到返回下标，未找到返回-1<br>‘axyaXY’.find(‘xy’)<br>→ 1<br>‘aaXY’.find(‘xy’)<br>→ -1<br>index()方法与find()类似，区别是未找到的时候报错。</p>
-<h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><p>字符串.replace(老子串，新字符串)<br>‘aaXY’.replace(‘aa’, ‘bb’)<br>‘bbXY’</p>
-<h3 id="分隔"><a href="#分隔" class="headerlink" title="分隔"></a>分隔</h3><p>(了解)partition把一个字符串切成几块并返回，包含子串。<br>‘xyaxyaXY’.partition(‘xy’)<br>(‘’, ‘xy’, ‘axyaXY’)</p>
-<p>字符串.split(子串)，根据子串分成几部分并返回列表，不包含子串。<br>‘xyaxyaXY’.split(‘x’)<br>[‘’, ‘ya’, ‘yaXY’]</p>
-<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>join()用一个字符串连接可迭代对象的各个项。<br>‘-‘.join([‘小明’, ‘hong’, ‘li’])<br>→ ‘小明-hong-li’</p>
-<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>字符串.strip(要删除的子串)<br>‘今天天气真好\n’.strip(‘\n’)<br>→ ‘今天天气真好’</p>
-<p>(以下了解start)</p>
-<h3 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h3><p>‘aa AA’.lower()<br>→ ‘aa aa’<br>‘aa AA’.upper()<br>→ ‘AA AA’<br>‘hello world’.capitalize()<br>→ ‘Hello world<br>‘aa AA’.swapcase()<br>→ ‘AA aa’</p>
-<h3 id="isxxx判断"><a href="#isxxx判断" class="headerlink" title="isxxx判断"></a>isxxx判断</h3><p>判断是否字母<br>‘a’.isalpha()<br>→ True<br>判断是否空格<br>‘ ‘.isspace()<br>→ True<br>判断是否数字<br>‘1’.isdigit()<br>→ True<br>判断是否合法的变量名<br>‘a4’.isidentifier()<br>→ True</p>
-<h3 id="填充"><a href="#填充" class="headerlink" title="填充"></a>填充</h3><p>对齐的时候会用到<br>‘’.center(填充后的字符串总长度，要填充的字符串)<br>‘abc’.center(5, ‘_’)<br>→  ‘<em>abc</em>‘<br>右侧填充<br>‘abc’.ljust(10, ‘_’)<br>→  ‘abc_______’<br>左侧填充<br>‘abc’.rjust(10, ‘_’)<br>→  ‘<strong>___</strong>abc’</p>
-<p>（以上了解end）</p>
+          字符串详解转义字符因为一些特殊字符是python中的关键字或一些特殊的概念如换行。所以以特殊字符 \ 开头，构造转义字符。常见的转义字符：\n  换行        \t  制表符\’   单引号     \”  双引号\   反斜杠
+遍历for i in ‘abc’:    print(i)
 
-          
+
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/05/python数据类型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1077,45 +963,18 @@
       
         
           
-            <h1 id="L2-基础数据类型"><a href="#L2-基础数据类型" class="headerlink" title="L2 基础数据类型"></a>L2 基础数据类型</h1><h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><ul>
-<li>字符串 string： 单引号括起来，中间是一些字符信息。双引号也可以。三个双引号括起来，中间内容可以换行。<br>字符：表达信息，’a’ ,’中’，多个字符组成了字符串。</li>
-<li>整形 integer（数字）： 整数，例如 -1， 0 ，1， 3 ，100。</li>
-<li>浮点数 float(数字):  小数，例如 1.1，  3.3333， 科学计数法1.3e2</li>
-<li>布尔（bool）： 真True  ， 假False</li>
-<li>字节 byte： 计算机中存储的二进制0101。形如b’\x1e\x3d’。</li>
-</ul>
-<h2 id="数字与字符串类型转换"><a href="#数字与字符串类型转换" class="headerlink" title="数字与字符串类型转换"></a>数字与字符串类型转换</h2><p>‘1’ + 2 报错类型不同。<br>明确 ‘1’  跟 1 不是一种类型。<br>字符串转整数： int(‘1’)   1<br>字符串转浮点数: float(‘3.5’)   3.5<br>数字转字符串: str(3.5)   ‘3.5’</p>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>常量：不变的量。<br>变量 variable：可变的量。a=1 b=2  a+b等于3。a=2 a+b等于4。变量让编程具有灵活性。<br>变量赋值： a = 1</p>
-<p>(了解 讲完函数后讲生成式前)等号本质改变的是指针引用。<br>a = print<br>a(‘hello’)</p>
-<p>None：表示什么都没有，没有类型也不占空间。注意a=None跟a=’’不一样。</p>
-<p>变量使用前要先声明。</p>
-<p>命名规则： 字母或下划线开头，后面可以是字母或数字，中间可以有下划线，中间不能有空格，不能有特殊字符。 a, student1, student_name 这些变量名都是合法的。</p>
-<p>type(): 判断变量类型。 a=1 type(a)  <class 'int'=""></class></p>
-<h3 id="了解）动态语言"><a href="#了解）动态语言" class="headerlink" title="(了解）动态语言"></a>(了解）动态语言</h3><p>java是强类型语言，使用变量前要先声明变量类型 int a = 0,如果再a=’hello’ 会报类型错误。但是python中就可以，所以python是弱类型（动态类型）语言，其它的弱类型语言还有javascript。强类型优点是严谨，弱类型优点是使用方便。</p>
-<h3 id="了解-变量在内存中"><a href="#了解-变量在内存中" class="headerlink" title="(了解) 变量在内存中"></a>(了解) 变量在内存中</h3><p>内存就好像一个大仓库，仓库里有很多小房间。当我们声明一个变量时a=1234，就占用了一个小房间。</p>
-<p>id(): id(a) 返回变量的内存地址。 a=1234  id(a) 1263709331728</p>
-<p>is: 关键字is比较两个变量的内存地址是否一致，返回布尔。<br>由于解释器优化，小的整数和短的字符串会公用内存。<br>a=1 b=1   a is b True; a=12345 b=12345    a is b False。</p>
-<p>del： 关键字del ， del a。</p>
-<h3 id="数学运算符"><a href="#数学运算符" class="headerlink" title="数学运算符"></a>数学运算符</h3><ul>
-<li>加+，减-，乘*，除 /  。 ‘你好’ + ‘小明’   ‘你好小明’     。优先级一般</li>
-<li>次方 2**3， 除过取整 //    int(3.33)  3 ,取余 10%3  1  。优先级较高</li>
-<li>（位运算 先不用记） &amp;  &lt;&lt;  &gt;&gt; |   。优先级最高。</li>
-</ul>
-<h3 id="逻辑比较运算符"><a href="#逻辑比较运算符" class="headerlink" title="逻辑比较运算符"></a>逻辑比较运算符</h3><p>(比较）&lt; &gt; &lt;= &gt;=  ==  != ,注意=表示赋值、==表示比较。 优先级偏低。<br>运算符优先级不确定的时候，用小括号改变优先级。</p>
-<p>1代表True，0代表False，空列表也代表False。</p>
-<h3 id="集合运算符"><a href="#集合运算符" class="headerlink" title="集合运算符"></a>集合运算符</h3><p>比较的是bool值。<br>与and 、 或or 、 not 、 in。    优先级最低。</p>
-<ul>
-<li>True and True → True  ，其它False。 </li>
-<li>False or False → False， 其它情况 True</li>
-<li>not True → False</li>
-<li>1 in [1,2,3] → True</li>
-</ul>
-<h3 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h3><ol>
-<li>is 跟 == 有什么区别？<br>答： ==比较两个值是否相当。 is比较的是内存地址是否相等。</li>
-<li>基础类型有哪些？<br>答： int，float， bool， str</li>
-</ol>
-
-          
+          L2 基础数据类型基本数据类型
+字符串 string： 单引号括起来，中间是一些字符信息。双引号也可以。三个双引号括起来，中间内容可以换行。字符：表达信息，’a’ ,’中’，多个字符组成了字符串。
+整形 integer（数字）： 整数，例如 -1， 0 ，1， 3 ，100。
+浮点数 float(数
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/05/python基本/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

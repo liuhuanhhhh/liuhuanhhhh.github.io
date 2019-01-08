@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[django简介]]></title>
+    <url>%2F2019%2F01%2F05%2Fdjango%E7%AE%80%E4%BB%8B%2F</url>
+    <content type="text"><![CDATA[django介绍版本：1.x 和 2.x， 2.x不支持python2版本，只支持py3.5及以上版本。1.x路由正则风格 2.x路由风格简单类似flask。 优点：大而全，封装多种功能，开箱即用。目录结构适合中大型程序。缺点，内含的功能有些用不上。 教程：投票应用 确认python版本和django版本已安装。python -m django –version 新建工程项目django-admin startproject mysite 项目目录结构根目录下manage.py启动服务的入口。跟项目同名的mysite文件夹下是主要项目代码。有的项目中这个文件夹又叫做app、src。settings.py设置，urls.py路由。wsgi.py打包应用部署相关。 启动项目 python manage.py runserver 生成应用 python manage.py startapp polls 。project是项目工程，app应用是项目中一个功能模块。polls目录下migrations是sql迁移脚本，admin.py后台插件，apps.py ,models.py定义表结构的类，tests.py单元测试，views.py业务逻辑和HTML渲染。 数据流程浏览器请求url → mysite/urls.py → polls/urls.py → polls/views.py → 返回响应浏览器展示 报错 安装django时报目录权限错误。 解决使用管理员powershell pip安装。 代码修改后未生效，服务器无log。原因进程未正常退出。解决 改端口或任务管理器中结束所有python.exe getaddress函数报错。原因，计算机别名为中文。 时间场景：你的网站世界用户都可访问。网站上线圣诞节活动，0点到24点结束，本国人正常，外国人访问发现活动开始和结束时间提前或延后。 背景知识：TIME_ZONE=’UTC’USE_TZ=True不带时区的时间aware_time, 带时区的时间local_time(本地时间)。GMT、UTC（世界调和时）。中国东8区 UTC+8。python内置的datetime包 now()生成本地时间。如果网站只有国内访问，USE_TZ应该设置为False，时间可以由datetime包生成，存储在数据库的是不带时区的本地时间。 django解决方案：为了避免上面提到的场景，django的解决方案是。基于三方包pytime_tz，由time_zone() 生成带时区的时间，根据TIME_ZONE设置转换UTC时间存入数据库，html渲染时从取出UTC时间，根据访问者的时区转换成访问者当地的时间。 最佳实践： 国内访问， USE_TZ=False TIME_ZONE=’UTC’ datetime.now() time_zone()都行 多国访问，USE_TZUSE_TZ=True TIME_ZONE=’Asia/Shanghi’ time_zone() 可能出现的错误：前台页面时间比实际早8小时，原因USE_TZ=False TIME_ZONE=’Asia/Shanghi’工作中直接操作数据库时记得考虑数据库中的时间是早8小时的。 i18ni18n意为国际化。网站上的菜单不同国家人访问展示不同的语言。原理有个翻译的配置文件。I18N=TRUE 保持默认开启。LANGUAGE_CODE]]></content>
+      <categories>
+        <category>django</category>
+      </categories>
+      <tags>
+        <tag>django</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[爬虫简介]]></title>
+    <url>%2F2019%2F01%2F05%2F%E7%88%AC%E8%99%AB%E7%AE%80%E4%BB%8B%2F</url>
+    <content type="text"><![CDATA[网络爬虫网络爬虫(web crawler), 以前经常称为网络蜘蛛(spider), 是按照一定的规则自动浏览万维网并获取信息的机器人程序(或叫脚本), 曾经被广泛的应用于互联网搜索引擎. 使用过互联网和浏览器的人都知道, 网页中除了提供用户阅读的文字信息之外, 还包含一些超链接. 网络爬虫系统正是通过网页中的超链接信息不断获得网络上的其他页面. 正因为如此, 网络数据采集的过程就像一个爬虫或者蜘蛛在网络上漫游, 所有才被形象的称之为网络爬虫或者网络蜘蛛. 爬虫的应用领域在理想的状态下, 所有的ICP(internet Content Provider) 都应该为自己的网络提供API接口来共享它们允许其他程序获取的数据, 在这种情况下爬虫就不是必需品, 国内比较有名的电商平台(如淘宝, 京东等), 社交平台(如QQ/微博/微信等)这些网站都提供了自己的Open Api, 但是这类Open Api通常会对可以抓取的数据频率进行限制. 对于大多数的公司而言, 计时的获取行业相关数据就是企业生存的重要环节之一, 然而大部分企业在行业数据方面的匮乏是其与生俱来的短板, 合理的利用爬虫来获取数据并从中提取出有价值的信息是至关重要的. 当然爬虫还有很多重要的应用领域, 以下列举了其中一部分. 搜索引擎 新闻聚合 社交应用 舆情监控 行业数据 合法性1.网络爬虫领域目前还属于拓荒阶段, 虽然互联网世界已经通过自己的游戏规则建立起一定的道德规范(Robots协议, 全称是’网络爬虫排除标准’), 但在法律部分还在建立和完善中, 也就是说, 现在这个领域暂时还是灰色地带. ‘法不禁止即为许可’, 如果爬虫就像浏览器一样获取的是前端显示的数据(网页上的公开信息), 而不是网站后台的私密敏感信息, 就不太担心法律法规的约束, 因为目前大数据产业链的发展速度远远超过了法律的完善程度. 在爬取网站的时候, 需要限制自己的爬虫遵守Robots协议, 同时控制网络爬虫程序的抓取数据的速度, 在使用数据的时候, 必须要尊重网站的知识产权(从Web2.0时代开始, 虽然Web上的数据很多都是由用户提供的, 但是网站平台是投入了运营成本的, 当用户在注册和发布呢日用时, 平台通常就已经获取了对数据的所有权, 使用权和分发权). 如果违反了这些规定, 在打官司的时候败诉几率就非常高. Robots.txt文件网站告诉爬虫哪些能访问哪些不能访问https://www.taobao.com/robots.txt1234567891011User-Agent: Yahoo! SlurpAllow: /productAllow: /spuAllow: /dianpuAllow: /overseaAllow: /listAllow: /ershouDisallow: /User-Agent: *Disallow: / 注意上面robots.txt第一段的最后一行, 通过设置’Disallow:/’禁止百度爬虫访问除了’Allow’规定页面外的其他所有页面. 因此当你在百度搜索’淘宝’的时候, 搜索结果下方会出现: ‘由于该网站的rebots.txt文件存在限制指令(限制搜索引擎抓取). 系统无法提供该页面的内容描述.’, 百度作为一个搜索引擎, 至少在表面上遵守了淘宝网的robots.txt协议, 所以用户不能从百度上搜索到淘宝内部的产品信息. whois信息 站长工具 whois包 相关工具 chrome devtool使用 postman 抓包工具 reference 刘东灵 的CSDN 博客 《用python写网络爬虫》]]></content>
+      <categories>
+        <category>python爬虫</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git]]></title>
+    <url>%2F2019%2F01%2F05%2Fgit%2F</url>
+    <content type="text"><![CDATA[git基本命令1 打开git bash或cmd终端。cd到项目文件夹跟目录下。cd /pycharm/testgit git init 初始化本地仓库git，会看到项目文件夹下生成.git隐藏文件夹，这个文件夹会记录以后每次的更改和提交。常用命令git commit -m “第一次提交” 提交 git Branch 新建分支 git config –global user.email “320571632@qq.com“git config –global user.name “liuhuan” git add 文件名 。 跟踪单个文件git add 1.py git add . 跟踪当前文件夹下所有文件 git merge 副分支。 合并副分支内容到当前分支。 分支(newfeature)git add . git commit -m “”(newfeature)git checkout master(*master)git merge newfeatrue 这样就会把新分支的修改合并到主分支下。 撤回撤销add 文件撤销commit 记录 还原-git log 查看提交记录。记忆一下想要还原的id值。-git reset –hard 提交记录的id 还原到那一次提交时的状态。 git基本命令2##引题代码在本地提交，可以实现版本回退和前进。但是如果本地磁盘损坏，代码丢失，所以我们要把代码往另一台电脑（远程服务器）存一份。好像网盘。实现代码在不同客户端（电脑，笔记本，手机）拷贝下载代码，提交代码到远程服务 ##ssh 非对称加密ssh:主要用途 远程连接另一台计算机对称加密： 明文’abc’,定义加密规则 a–z分别对应1-26，密文’1%2%3’非对称加密A端和B端通讯。A端通过数学方式(RSA加密 生产容易反向破解难)生成一对密钥。A把公钥告诉B 。B想给A发送消息，先把小修用A的公钥加密，传统给A.如果中间被黑客截取 由于黑客没有A的私钥无法解密，最终A收到消息用自己的私钥解密看到的消息 ##远程仓库平台-github 最为流行，主要线上、-gitlab 较为流行，UI漂亮但消耗更多的资源，不少公司局域网内搭建-gitee 阿里云code，国内的代码仓库，基于gitlab或相似技术 ##github使用1.注册登录。网站没有被墙可以直接登录可能出现的问题：注册时报验证错误检查防火墙或代理，用手机注册或科学上网2.左上角搜索仓库。进入一个工程项目中watch 关注，当代码改变，会有邮件提醒star 收藏 收藏到我的文件夹folk 拷贝别人的代码仓库到自己的仓库。方便自己下载这份代码或为这个项目做贡献 除项目外 约定俗成的文件-READ.md 写项目介绍，安装运行步骤。这个文件会在github项目渲染出来。说明书-LICENSE 版权声明 gpl，规定代码是否免费，是否可以修改商用。具体百度-.ignore 忽略一些不想跟踪不想add文件 ###准备：配置密钥对初次使用代码本控制平台。由于代码重要，平台为了防止账户名密码泄露后代码被黑客窃取。你的客户端自己的电脑生成一对密钥，然后将公钥交给平台。这样从平台克隆代码时，不是自己的电脑无法克隆–ssh-keygen命令 一路回车，生成密钥对在用户/用户名/.ssh文件下看到生成的 id-rsa.pub公钥。私钥自己谨慎保存，公钥给你想要沟通的远程平台 ##命令github上随意找一个项目，复制下载里的 ssh链接-git clone ssh链接（形如git@github.com/sss/sss.git） 远程仓库复制到自己的本地电脑上刚开始对方会询问是否接受存储公钥，输入yes,开始clone github新建一个项目，克隆到本地。 本地进行修改，提交-git push origin 把本地提交推送到远程服务器仓库。这样当更换电脑或是本地仓库被破坏时，可以快速从远程仓库克隆回复。origin指远程服务器 -git pull从远程仓库更新新内容到本地。与git clone相比，clone相比，clone是本地什么都没有 克隆下来后的上传 find . -name “.git” | xargs rm -Rf 解除远程链接 git remote add origin git@github.com:liuhuanhhhh/polls.git 绑定github上的仓库链接 git push –set-upstream origin master 上传到远程仓库 从远程复制仓库。pull是本地已经有的仓库，另外开发者提交过远程仓库，远程仓库代码比自己本地仓库代码新，所以本地提交前要先从远程更新提交。 打tag 百度自学，v8.0.14]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数据库基础1]]></title>
+    <url>%2F2019%2F01%2F05%2F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%801%2F</url>
+    <content type="text"><![CDATA[数据库介绍引题为什么使用数据库：之前的学习中我们已经可以存储数据，变量、读写本地文件（txt、csv)。 持久化。内存中的变量当程序重启和电脑断电时丢失数据，而硬盘可以长时间、持久地存储数据。数据存储到硬盘上的过程叫持久化。 数据库更加专业强大。远比纯文本文档、excel表格强大，增删改查和统计函数。 数据库基本概念观察表格、excel表格 ，打开了 学生列表.xls excel表格文档。类比引入数据库概念。 库 schema：好像整个表格文档。 好像一个物流公司共占地100亩，盖了50个仓库，A01仓库负责存储河南客户货物，A02仓库负责存储广州xx项目物料。每一个仓库对应一个项目。 表 table：对应excel表格里sheet1 sheet2。由行内容和列组成。表描述一个类，每一行描述一个对象。 字段 field：对应表格头部的 序号、班级、姓名。好像类的属性。字段里存储的值的类型需要事先定义。 值 value：表格每一行具体存储的信息。 主键 primary key：类似表格中 序号 这一列。数据库中这一列会自增并不会重复。 外键 foreign key: 表1学员信息里一个班级字段引用自另一个表班级信息表的id列。优点易于维护，保持数据一致性。 范式：描述 智游学校时，可以把全部信息字段定义到一张表上，也可以分为学员信息表、班级信息表、课程信息表。划分维度、信息耦合度可高可低，具体结合业务逻辑分析。 常见数据库介绍关系型数据库： sqlite：轻量级数据库。功能基础简单，在数据较少情况下性能并不比重型数据库低。优点，python解释器内置驱动，无需安装直接使用，适合初学数据库。手机应用使用的就是它。 mysql：最流行的数据库。中型。开源、php流行推动了mysql的流行。 PostgreSQL: 大象数据库，号称最先进的数据库。从大学兴起的开源数据库、架构优秀、功能前卫，数据量很大的时候，性能衰减不明显。消耗相同硬件资源的情况下性能和稳定性优于mysql数据库。django odoo等python框架官方推荐使用此数据库。但是目前市场占有率还不高。 oracle：地位很高的商用数据库。昂贵、稳定、功能强大，常与java配合使用。 DB2 sybase MSSQL等，其它的商用数据库。 access：微软office套件中包含，轻量，由于数据库门槛，使用者不多。 no-sql（not only sql）型数据库： mongodb 存储单位是文档，json（类似后端dict)结构整个存进去。数据常放在内存中以获得查询性能，定期把数据持久化到硬盘上。 redis 键值对 “name”=”小明” 。 数据库字段类型数据库创建表示要事先告诉计算机硬盘，每张表的每个字段存什么类型、将要存储的内容大还是小。长度过小，内容值存不进去，长度太大，浪费硬盘空间。我们需要选择合适的类型和长度。各数据库字段类型关键字基本一致。mysql oracle postgresql常用字段类型如下： 整数整数：常用INT INTEGER 占4个字节，2**32，可以表示常用范围整数。（不常用）TINYINT（1字节） SMALLINT（2字节） MEDIUMINT（3字节）BIGINT（8字节） 适用身份证号、VIP号码比较长的编号。 浮点数常用 FLOAT(4字节) 单精度小数 。 即使是单精度，范围也不小。DOUBLE(8字节) 双精度小数。场景 金钱计算，轨道计算。 字符串CHAR char(10) 可以存储长度（字节长度）不超过10的字符串。例如”hello”。但由于长度按照字节判断，存unicode编码的中文只能存3个。常用 VARCHAR 0-65535字节，variable char 可变字符串。VARCHAR(5) 可以存储5个中文或5个英文字母。场景 用户名、家庭住址。TEXT TINYTEXT medium longtext ， 场景 大文本存储，书籍文章、用户反馈。BLOB medium longblob ，二进制文件， 场景 图片、视频。但一般不在数据库中存储图片和视频，因为会增加数据库的计算压力和带宽传输压力和备份还原的难度和用户信息静态资源耦合到一起，解决方案是 图片视频存到普通文件目录下，数据库中存储文件路径。 日期DATE 日期， 形如”2018-11-08”常用 DATETIME 日期时间， “2018-11-08 16:52:30” “2018-11-08 16:52:30.123” “2018-11-08 16:52:30 GTM+8”常用 TIMESTAMP 时间戳, 1541667270 1541667270.7252207 1541667270725 sqlite的字段比较简化：INTEGER 整数REAL 浮点数TEXT 字符串NULL 什么都不存 SQLstructured query language 结构化查询语言。专门对数据库进行查找、增加、修改、删除、统计的操作语言。CURD 增删查改 create update retrieve delete。书写风格，关键字大小写都行，建议大写。表名大小写都行，但是在一些数据库中不区分大小写，建议小写。 （重要）基本语法。 查找SELECT 字段1,字段2,字段3,… FROM 表名; python中返回值形如[(1, 502班, 小明, 男), (), ()]。字段比较多时简写为 SELECT FROM 表名; 由于数据库执行时会把转换为字段再执行，性能极微小下降。SELECT * FROM 表名 WHERE 字段1 = 过滤值,字典2=过滤值 ; where限定条件查找。 添加INSERT 字段1,字段2,… INTO 表名 VALUES (1, “小明”, “男”);简写 INSERT INTO 表名 VALUES (1, “小明”, “男”); 修改UPDATE 表名 SET 字段1=新值,字段2=新值 WHERE 字段1 = 过滤值;注意没有where条件限定行的话将会更新整张表。 删除DELETE FROM 表名; 注意会删除整张表。DELETE FROM 表名 WHERE 字段1 = 过滤值; 限定条件删除某些行。 创建表CREATE TABLE 表名 { 字段类型 字段名 其它关键字（主键 备注）， INT id PRIMARY KEY, VARCHAR(20) username ，} 进阶语法：分组group by、统计、聚合having max avg， 爬虫中后期再讲。 存储过程：数据库脚本，类似后端语言，有变量、控制语句、函数等。适合书写复杂SQL语句，效率较高。]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python数据类型]]></title>
+    <url>%2F2019%2F01%2F05%2Fpython%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[字符串详解转义字符因为一些特殊字符是python中的关键字或一些特殊的概念如换行。所以以特殊字符 \ 开头，构造转义字符。常见的转义字符：\n 换行 \t 制表符\’ 单引号 \” 双引号\ 反斜杠 遍历for i in ‘abc’: print(i) a b c 下标访问‘hello’[4] ‘o’ 搜索(了解)’字符串’.count(子字符串) 搜索子串出现次数‘xyaxyaXY’.count(‘xy’)→ 2‘xyaxyaXY’.count(‘xy’, 2)(了解)判断字符串是否以某个字母开头→ 1‘abcd’.startswith(‘a’)→ True‘abcd’.endswith(‘d’)→ True 字符串.find(子串) 找到返回下标，未找到返回-1‘axyaXY’.find(‘xy’)→ 1‘aaXY’.find(‘xy’)→ -1index()方法与find()类似，区别是未找到的时候报错。 替换字符串.replace(老子串，新字符串)‘aaXY’.replace(‘aa’, ‘bb’)‘bbXY’ 分隔(了解)partition把一个字符串切成几块并返回，包含子串。‘xyaxyaXY’.partition(‘xy’)(‘’, ‘xy’, ‘axyaXY’) 字符串.split(子串)，根据子串分成几部分并返回列表，不包含子串。‘xyaxyaXY’.split(‘x’)[‘’, ‘ya’, ‘yaXY’] 连接join()用一个字符串连接可迭代对象的各个项。‘-‘.join([‘小明’, ‘hong’, ‘li’])→ ‘小明-hong-li’ 删除字符串.strip(要删除的子串)‘今天天气真好\n’.strip(‘\n’)→ ‘今天天气真好’ (以下了解start) 大小写转换‘aa AA’.lower()→ ‘aa aa’‘aa AA’.upper()→ ‘AA AA’‘hello world’.capitalize()→ ‘Hello world‘aa AA’.swapcase()→ ‘AA aa’ isxxx判断判断是否字母‘a’.isalpha()→ True判断是否空格‘ ‘.isspace()→ True判断是否数字‘1’.isdigit()→ True判断是否合法的变量名‘a4’.isidentifier()→ True 填充对齐的时候会用到‘’.center(填充后的字符串总长度，要填充的字符串)‘abc’.center(5, ‘_’)→ ‘abc‘右侧填充‘abc’.ljust(10, ‘_’)→ ‘abc_______’左侧填充‘abc’.rjust(10, ‘_’)→ ‘___abc’ （以上了解end）]]></content>
+      <categories>
+        <category>python基础</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python基本]]></title>
+    <url>%2F2019%2F01%2F05%2Fpython%E5%9F%BA%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[L2 基础数据类型基本数据类型 字符串 string： 单引号括起来，中间是一些字符信息。双引号也可以。三个双引号括起来，中间内容可以换行。字符：表达信息，’a’ ,’中’，多个字符组成了字符串。 整形 integer（数字）： 整数，例如 -1， 0 ，1， 3 ，100。 浮点数 float(数字): 小数，例如 1.1， 3.3333， 科学计数法1.3e2 布尔（bool）： 真True ， 假False 字节 byte： 计算机中存储的二进制0101。形如b’\x1e\x3d’。 数字与字符串类型转换‘1’ + 2 报错类型不同。明确 ‘1’ 跟 1 不是一种类型。字符串转整数： int(‘1’) 1字符串转浮点数: float(‘3.5’) 3.5数字转字符串: str(3.5) ‘3.5’ 变量常量：不变的量。变量 variable：可变的量。a=1 b=2 a+b等于3。a=2 a+b等于4。变量让编程具有灵活性。变量赋值： a = 1 (了解 讲完函数后讲生成式前)等号本质改变的是指针引用。a = printa(‘hello’) None：表示什么都没有，没有类型也不占空间。注意a=None跟a=’’不一样。 变量使用前要先声明。 命名规则： 字母或下划线开头，后面可以是字母或数字，中间可以有下划线，中间不能有空格，不能有特殊字符。 a, student1, student_name 这些变量名都是合法的。 type(): 判断变量类型。 a=1 type(a) (了解）动态语言java是强类型语言，使用变量前要先声明变量类型 int a = 0,如果再a=’hello’ 会报类型错误。但是python中就可以，所以python是弱类型（动态类型）语言，其它的弱类型语言还有javascript。强类型优点是严谨，弱类型优点是使用方便。 (了解) 变量在内存中内存就好像一个大仓库，仓库里有很多小房间。当我们声明一个变量时a=1234，就占用了一个小房间。 id(): id(a) 返回变量的内存地址。 a=1234 id(a) 1263709331728 is: 关键字is比较两个变量的内存地址是否一致，返回布尔。由于解释器优化，小的整数和短的字符串会公用内存。a=1 b=1 a is b True; a=12345 b=12345 a is b False。 del： 关键字del ， del a。 数学运算符 加+，减-，乘*，除 / 。 ‘你好’ + ‘小明’ ‘你好小明’ 。优先级一般 次方 2**3， 除过取整 // int(3.33) 3 ,取余 10%3 1 。优先级较高 （位运算 先不用记） &amp; &lt;&lt; &gt;&gt; | 。优先级最高。 逻辑比较运算符(比较）&lt; &gt; &lt;= &gt;= == != ,注意=表示赋值、==表示比较。 优先级偏低。运算符优先级不确定的时候，用小括号改变优先级。 1代表True，0代表False，空列表也代表False。 集合运算符比较的是bool值。与and 、 或or 、 not 、 in。 优先级最低。 True and True → True ，其它False。 False or False → False， 其它情况 True not True → False 1 in [1,2,3] → True 面试 is 跟 == 有什么区别？答： ==比较两个值是否相当。 is比较的是内存地址是否相等。 基础类型有哪些？答： int，float， bool， str]]></content>
+      <categories>
+        <category>python基础</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+</search>

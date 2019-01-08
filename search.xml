@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[selenium介绍]]></title>
     <url>%2F2019%2F01%2F08%2Fseleium%E4%BB%8B%E7%BB%8D%2F</url>
-    <content type="text"><![CDATA[简单介绍一下自动测试是什么鬼selenium是浏览器自动化测试框架。主要领域是自动化测试。也可用于爬虫。其框架用脚本驱动主流浏览器（谷歌、火狐、IE）。让浏览器自动打开、点击、翻页、选择标签、取熟悉内容。 运用场景： 代替麻烦重复的人工黑盒测试流程。 京东的爬虫走了一些js请求，有些参数不知道构造方法，很难分析和模拟请求。缺点是效率慢；考虑浏览器操作，项目复杂时编写的脚本更复杂影响开发效率。 教你安装selenium → 驱动 → 浏览器 pip install selenium 安装浏览器对应版本的驱动1&gt; 驱动网址2&gt; 谷歌浏览器/设置/帮助/关于 看下浏览器版本3&gt; 选择对应的版本和平台的zip包下载4&gt; 解压后得到 chromedriver.exe5&gt; chromedriver.exe放入 python解释器/Scripts 目录下6&gt; 重启浏览器7&gt; 然后别忘了配置环境变量8&gt; 最后写一段简单的selenium脚本测试生效。 简单代码示例from selenium import webdriver # 引入上面下载的包import time # 时间包 driver = webdriver.Chrome() # 打开浏览器driver.get(‘http://www.baidu.com&#39;) #请求网址time.sleep(5) # 停留5秒driver.quit() # 关闭浏览器]]></content>
+    <content type="text"><![CDATA[简单介绍一下自动测试是什么鬼selenium是浏览器自动化测试框架。主要领域是自动化测试。也可用于爬虫。其框架用脚本驱动主流浏览器（谷歌、火狐、IE）。让浏览器自动打开、点击、翻页、选择标签、取熟悉内容。 运用场景： 代替麻烦重复的人工黑盒测试流程。 京东的爬虫走了一些js请求，有些参数不知道构造方法，很难分析和模拟请求。缺点是效率慢；考虑浏览器操作，项目复杂时编写的脚本更复杂影响开发效率。 教你安装selenium → 驱动 → 浏览器 pip install selenium 安装浏览器对应版本的驱动1&gt; 驱动网址2&gt; 谷歌浏览器/设置/帮助/关于 看下浏览器版本3&gt; 选择对应的版本和平台的zip包下载4&gt; 解压后得到 chromedriver.exe5&gt; chromedriver.exe放入 python解释器/Scripts 目录下6&gt; 重启浏览器7&gt; 然后别忘了配置环境变量8&gt; 最后写一段简单的selenium脚本测试生效。 简单代码示例1234567from selenium import webdriver # 引入上面下载的包import time # 时间包driver = webdriver.Chrome() # 打开浏览器driver.get(&apos;http://www.baidu.com&apos;) #请求网址time.sleep(5) # 停留5秒driver.quit() # 关闭浏览器]]></content>
       <categories>
         <category>自动测试框架</category>
       </categories>

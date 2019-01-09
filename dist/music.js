@@ -4,12 +4,6 @@ const ap = new APlayer({
     autoplay: true,
     audio: [
       {
-        name: "人生就像过山车（DJ版）",
-        artist: '艾丽娅琪琪格',
-        url: 'http://www.ytmp3.cn/down/56741.mp3',
-        cover: 'http://img.ytmp3.cn/image/79.jpg',
-      },
-      {
         name: '给我一个理由忘记(现场版)',
         artist: 'A-Lin-',
         url: 'http://www.ytmp3.cn/down/31366.mp3',

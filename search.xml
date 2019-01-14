@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[git上传github步骤]]></title>
+    <url>%2F2019%2F01%2F14%2Fgit%E4%B8%8A%E4%BC%A0github%E6%AD%A5%E9%AA%A4%2F</url>
+    <content type="text"><![CDATA[上传github步骤有些人总是记不住代码上传，下面我为大家整理一下步骤 首先 新建一个仓库 git init # 初始化一下自己要上传的代码 git add . # 选择全部文件上传 git commit -m ‘first commit’ # 提交到本地仓库 git remote add origin git@github.com:xxx/xxx.git # 添加到远程仓库，xxx是你新建的仓库地址 git push -u origin master # 最后一步上传到github 下图是git的操作流程：]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[用python发邮件]]></title>
     <url>%2F2019%2F01%2F10%2F%E7%94%A8python%E5%8F%91%E9%82%AE%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[邮件收发场景：工作沟通邮件；登陆注册；广告；修改密码、激活链接；邮件客户端。参考： https://www.1owo.com/python/python/python-python%E5%8F%91%E9%82%AE%E4%BB%B6/ 准备工作：授权。各邮箱大同小异。这里以qq邮箱为例。1&gt; qq邮箱个人首页2&gt; qq邮箱首页/设置/账户 向下翻到POP3/IMAP/SMTP服务。3&gt; 开启 IMAP/SMTP服务 邮件相关协议： SMTP（simple mail transfer protocol）简单邮件传输协议。用于发邮件。 POP3(Post office protocol) 邮局协议。将邮件服务器上资料同步到本地。用于收邮件。 开通以上两种协议后收邮件，发现可以正常收取，但有个问题，通过程序拉取的邮件已下载已阅读，但登录官方邮箱后发现之前下载的邮件仍然是未读状态。说明POP3协议只能简单地收件但不能标记邮件状态。 IMAP(internet mail access protocol) , 交互式邮件存取协议，POP3协议的增强版。标记已读、删除，跟官方邮件服务器状态保持同步，体验较好。 SSL ，数据链路层加密，https基于此技术。qq邮箱的邮件协议也开启了这个加密，代码中注意配置SSL为True。 发邮件的包： smtplib poplib imaplib ，内置包 缺点不太方便 zmail , 中文文档 ，缺点有bug yagmail， https://github.com/kootenpv/yagmail 。star人数多，稳定，国外邮件公司开发的产品。缺点不会自动识别qq邮箱域名，需要手动配置。 pip install yagmail 。注意anaconda环境中只会安装这个包的旧版本。 ssl 链路层加密方式。 收邮件客户端工具，outlook一类。 下面是简单示例12345678910import yagmailsender = &apos;xxxxxxxxxx@qq.com&apos; # 发送人password = &apos;xxxxxxxx&apos; # 邮箱授权服务密码，注意不是qq邮箱登录密码target = &apos;xxxxxxxxx@qq.com&apos; # 接收人邮箱地址。yag = yagmail.SMTP(user=sender, password=password, host=&apos;smtp.qq.com&apos;, port=465, smtp_ssl=True)contents = &apos;测试test&apos;yag.send(to=target, subject=&apos;测试yagmail发邮件&apos;, contents=contents)print(&apos;已发送&apos;) 在下面是稍微复杂的邮件发送示例： 12345678910111213141516171819202122232425262728import yagmailimport ossender = &apos;xxxxxxxxxxxx@qq.com&apos;password = &apos;xxxxxxxxxxxxxx&apos; # 邮箱授权服务密码，注意不是qq邮箱登录密码target = &apos;xxxxxxxxxqq.com&apos;html = &quot;&quot;&quot;&lt;html lang=&quot;zh&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&quot;&gt; &lt;title&gt;示例2&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;测试&lt;/h1&gt; &lt;p&gt;lalalalalbalbal&lt;/p&gt; &lt;img src=&quot;https://www.baidu.com/img/bd_logo1.png&quot;/&gt; &lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;attachment_path = os.path.join(os.path.dirname(__file__), &apos;base.png&apos;)print(attachment_path)contents = [&apos;测试yagmail示例2&apos;, html, attachment_path] # [正文，正文，附件]yag = yagmail.SMTP(user=sender, password=password, host=&apos;smtp.qq.com&apos;, port=465, smtp_ssl=True)yag.send(to=target, subject=&apos;yagmail示例2&apos;, contents=contents) # 群发的话收件人为列表print(&apos;发送完成&apos;) 有什么问题下面评论出来我将一一回复·]]></content>

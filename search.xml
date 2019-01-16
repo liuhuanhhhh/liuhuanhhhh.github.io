@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[win10不重启环境变量生效]]></title>
+    <url>%2F2019%2F01%2F16%2Fwin10%E4%B8%8D%E9%87%8D%E5%90%AF%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%94%9F%E6%95%88%2F</url>
+    <content type="text"><![CDATA[很多适合配置完环境变量后都需要重启电脑来生效，下面来说一行代码就不用重启那么麻烦了：以修改环境变量“PATH”为例，修改完成后，进入命令提示符，输入：set PATH=C: 然后在接着输入：echo %PATH% ，可以发现“我的电脑”-&gt;“属性”-&gt;“高级”-&gt;“环境变量”中设置的 PATH 值已经生效。 不用担心窗口中的修改会影响环境变量的值，DOS窗口中的环境变量只是Windows环境变量的一个副本而已。但是对副本的修改却会引发Windows环境变量的刷新，这正是我们想要的！ 拜拜！]]></content>
+      <categories>
+        <category>电脑问题</category>
+      </categories>
+      <tags>
+        <tag>win10</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[git上传github步骤]]></title>
     <url>%2F2019%2F01%2F14%2Fgit%E4%B8%8A%E4%BC%A0github%E6%AD%A5%E9%AA%A4%2F</url>
     <content type="text"><![CDATA[上传github步骤有些人总是记不住代码上传，下面我为大家整理一下步骤 首先 新建一个仓库 git init # 初始化一下自己要上传的代码 git add . # 选择全部文件上传 git commit -m ‘first commit’ # 提交到本地仓库 git remote add origin git@github.com:xxx/xxx.git # 添加到远程仓库，xxx是你新建的仓库地址 git push -u origin master # 最后一步上传到github 下图是git的操作流程：]]></content>

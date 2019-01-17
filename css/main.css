@@ -1946,7 +1946,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #13bdff;
+  background: #ffa253;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3588,8 +3588,8 @@ img.img-topic {
 }
 .weixin-box {
   position: absolute;
-  bottom: 110px;
-  left: 40px;
+  bottom: 120px;
+  left: 70px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.35);
 }
